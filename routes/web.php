@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', HomeController::class)->name('index');
+
+Route::get('productos', [ProductoController::class, 'listadoProductos'])->name('listadoProductos');
+Route::get('productos/crear', [ProductoController::class, 'crearProducto'])->name('crearProductos');
