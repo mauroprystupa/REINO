@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductoController;
+use Illuminate\Http\Request;
+use App\Models\Producto;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +22,11 @@ Route::get('/', HomeController::class)->name('index');
 
 Route::get('productos', [ProductoController::class, 'listadoProductos'])->name('listadoProductos');
 Route::get('productos/crear', [ProductoController::class, 'crearProducto'])->name('crearProductos');
+Route::post('productos',function(Request $request){
+    $nuevoProducto=new Producto;
+    $nuevoProducto->descripcion = $request->input('descripcion');
+    $nuevoProducto->precio = $request->input('precio');
+    $nuevoProducto->save();
+    return redirect()->route('listadoProductos');
+    
+})->name('productos.inventario'); 
