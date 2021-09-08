@@ -27,7 +27,12 @@ Route::post('productos',function(Request $request){
     $nuevoProducto->descripcion = $request->input('descripcion');
     $nuevoProducto->precio = $request->input('precio');
     $nuevoProducto->save();
-
     return redirect()->route('listadoProductos')->with('info','EL PRODUCTO SE GUARDO CON EXITO');
-    
 })->name('productos.inventario'); 
+
+Route::delete('productos/{id}', function ($id) {
+    $producto = Producto::findOrFail($id);
+    $producto->delete();
+    return redirect()->route('listadoProductos')->with('info','EL PRODUCTO SE ELIMINO CON EXITO');
+    
+})->name('eliminar');

@@ -22,6 +22,9 @@
                         <thead>
                             <th>Descripcion</th>
                             <th>Precio</th>
+                            <th>Accion</th>
+                            <th>Accion</th>
+
                         </thead>
                         <tbody>
                             @foreach ($productos as $producto)
@@ -30,6 +33,17 @@
                             <tr>
                                 <td>{{$producto->descripcion}}</td>
                                 <td>{{$producto->precio}}</td>
+                                <td>
+                                    <a href="javascript: document.getElementById('eliminar-{{$producto->id}}').submit()" class="btn btn-danger btn-sm">ELIMINAR</a>
+                                 <form id='eliminar-{{$producto->id}}' action="{{route ('eliminar',$producto->id)}}" method="POST">
+                                    @method('delete')
+                                    @csrf
+
+                                 </form>
+                                </td>
+                                <td>
+                                    <a href="" class="btn btn-primary btn-sm">EDITAR</a>
+                                </td>
                             </tr>
                             @endforeach
 
