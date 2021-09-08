@@ -27,6 +27,7 @@ Route::post('productos',function(Request $request){
     $nuevoProducto->descripcion = $request->input('descripcion');
     $nuevoProducto->precio = $request->input('precio');
     $nuevoProducto->save();
-    return redirect()->route('listadoProductos');
+
+    return redirect()->route('listadoProductos')->with('info','EL PRODUCTO SE GUARDO CON EXITO');
     
 })->name('productos.inventario'); 
